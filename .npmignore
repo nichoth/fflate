@@ -1,8 +1,6 @@
-*
 !esm/**
 !lib/**
 !umd/**
-!package.json
-!README.md
+!dist
 !CHANGELOG.md
 !LICENSE

@@ -1,10 +1,17 @@
 {
-  "name": "fflate",
+  "name": "@nichoth/fflate",
   "version": "0.8.2",
   "description": "High performance (de)compression in an 8kB package",
+  "files": [
+    "./dist/*",
+    "./esm/*",
+    "lib/*",
+    "umd/*"
+  ],
   "main": "./lib/index.cjs",
   "module": "./esm/browser.js",
   "types": "./lib/index.d.ts",
+  "homepage": "https://101arrowz.github.io/fflate",
   "unpkg": "./umd/index.js",
   "jsdelivr": "./umd/index.js",
   "browser": {
@@ -52,39 +59,6 @@
       }
     }
   },
-  "targets": {
-    "main": false,
-    "module": false,
-    "browser": false,
-    "types": false
-  },
-  "sideEffects": false,
-  "homepage": "https://101arrowz.github.io/fflate",
-  "repository": "https://github.com/101arrowz/fflate",
-  "bugs": {
-    "email": "arjunbarrett@gmail.com",
-    "url": "https://github.com/101arrowz/fflate/issues"
-  },
-  "author": "Arjun Barrett <arjunbarrett@gmail.com>",
-  "license": "MIT",
-  "keywords": [
-    "gzip",
-    "gunzip",
-    "deflate",
-    "inflate",
-    "compression",
-    "decompression",
-    "zlib",
-    "pako",
-    "jszip",
-    "browser",
-    "node.js",
-    "tiny",
-    "fast",
-    "zip",
-    "unzip",
-    "non-blocking"
-  ],
   "scripts": {
     "build": "npm run build:lib && npm run build:docs && npm run build:demo",
     "script": "node -r ts-node/register scripts/$SC.ts",
@@ -94,7 +68,8 @@
     "build:demo": "tsc --project tsconfig.demo.json && parcel build demo/index.html --no-cache --public-url \"./\" && SC=cpGHPages npm run script",
     "build:docs": "typedoc --plugin typedoc-plugin-markdown --hideBreadcrumbs --readme none --disableSources --excludePrivate --excludeProtected --githubPages false --out docs/ src/index.ts",
     "test": "TS_NODE_PROJECT=test/tsconfig.json uvu -b -r ts-node/register test",
-    "prepack": "npm run build && npm run test"
+    "postversion": "git push --follow-tags && npm publish",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@parcel/service-worker": "^2.9.3",
@@ -116,12 +91,44 @@
     "typedoc-plugin-markdown": "^3.16.0",
     "typescript": "^5.2.2",
     "uvu": "^0.3.3",
-    "uzip": "*"
+    "uzip": "^0.20201231.0"
   },
   "alias": {
     "react": "preact/compat",
     "react-dom": "preact/compat",
     "buffer": false,
     "process": false
-  }
+  },
+  "keywords": [
+    "gzip",
+    "gunzip",
+    "deflate",
+    "inflate",
+    "compression",
+    "decompression",
+    "zlib",
+    "pako",
+    "jszip",
+    "browser",
+    "node.js",
+    "tiny",
+    "fast",
+    "zip",
+    "unzip",
+    "non-blocking"
+  ],
+  "targets": {
+    "main": false,
+    "module": false,
+    "browser": false,
+    "types": false
+  },
+  "sideEffects": false,
+  "repository": "https://github.com/101arrowz/fflate",
+  "bugs": {
+    "email": "arjunbarrett@gmail.com",
+    "url": "https://github.com/101arrowz/fflate/issues"
+  },
+  "author": "Arjun Barrett <arjunbarrett@gmail.com>",
+  "license": "MIT"
 }
